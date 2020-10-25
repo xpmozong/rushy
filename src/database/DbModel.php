@@ -3,7 +3,7 @@
 namespace Rushy\Database;
 
 use Rushy\Di;
-use Rushy\Database\DbFactory;
+use Rushy\Database\DbManager;
 
 class DbModel
 {
@@ -23,7 +23,7 @@ class DbModel
         if ($this->dbName === '') {
             $this->dbName = $database['default'];
         }
-        $this->db = DbFactory::selectDb($database, $this->dbName, $this->connectionName);
+        $this->db = DbManager::selectDb($database, $this->dbName, $this->connectionName);
     }
 
     public static function create(array $data = []): DbModel

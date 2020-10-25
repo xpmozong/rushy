@@ -6,11 +6,17 @@ use Rushy\Database\DbAbstract;
 
 class Orm extends DbAbstract
 {
-    protected $pdo;
-    public function __construct(\PDO $pdo)
+    protected \PDO $pdo;
+    public function __construct($config)
     {
-        $this->pdo = $pdo;
+        $this->pdo = new \PDO(
+            'mysql:host='.$config['host'].';dbname='.$config['dbname'], 
+            $config['username'], 
+            $config['password'],
+            $config['options']
+        );
     }
+
     public function selectAll($table)
     {
         $statement = $this->pdo->prepare("select * from {$table}");
