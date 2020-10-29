@@ -14,7 +14,7 @@ class DbManager
         try {
             $db = [];
             $db['default'] = $config['default']['dbname'];
-            foreach ($config as $key => $value) {
+            foreach ($config as $value) {
                 $driver = isset($value['driver']) ? $value['driver'] : 'rmysql';
                 $class = 'Rushy\\Database\\'.ucfirst($driver);
                 if (isset($value['master'])) {
